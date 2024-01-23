@@ -15,7 +15,10 @@ import styles from "./welcome.style";
 const Welcome = () => {
   return (
     <View>
-      <Text>Welcome</Text>
+      <View style={styles.container}>
+        <Text style={styles.userName}>Hello! Imafidon</Text>
+        <Text style={styles.welcomeMessage}>Find your perfect Job</Text>
+      </View>
     </View>
   );
 };

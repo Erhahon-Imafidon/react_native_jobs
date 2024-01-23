@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { View, ScrollView, SafeAreaView, Text } from "react-native";
 import { Stack, useRouter } from "expo-router";
-import { COLORS, icons, images, SIZES } from "../constants";
+import { COLORS, icons, images, SIZES, loadFonts } from "../constants";
 import {
   Nearbyjobs,
   Popularjobs,
@@ -10,6 +10,26 @@ import {
 } from "../components";
 
 const Home = () => {
+  const [fontsLoaded, setFontsLoaded] = useState(false);
+
+  useEffect(() => {
+    async function loadResourcesAndDataAsync() {
+      try {
+        await loadFonts();
+      } catch (e) {
+        console.warn(e);
+      } finally {
+        setFontsLoaded(true);
+      }
+    }
+
+    loadResourcesAndDataAsync();
+  }, []);
+
+  if (!fontsLoaded) {
+    return null; // Or a loading spinner
+  }
+
   const router = useRouter();
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite }}>
