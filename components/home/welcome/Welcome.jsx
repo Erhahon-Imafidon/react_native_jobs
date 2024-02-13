@@ -17,6 +17,7 @@ const jobTypes = ["Full-time", "Part-time", "Contractor"];
 const Welcome = () => {
   const router = useRouter();
   const [activeJobType, setActiveJobType] = useState("Full-time");
+  const [value, setValue] = useState("");
   return (
     <View>
       <View style={styles.container}>
@@ -28,8 +29,8 @@ const Welcome = () => {
         <View style={styles.searchWrapper}>
           <TextInput
             style={styles.searchInput}
-            value=""
-            onChange={() => {}}
+            value={value}
+            onChangeText={(text) => setValue(text)}
             placeholder="Search for job"
           />
         </View>
